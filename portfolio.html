@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Portfolio - Romain VRNX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -32,13 +32,12 @@
       padding: 80px 20px;
       max-width: 1200px;
       margin: auto;
+    }
+    h1 {
       text-align: center;
-    }
-    main h1 {
-      margin-bottom: 1rem;
       font-weight: 700;
+      margin-bottom: 40px;
     }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -49,41 +48,23 @@
       position: relative;
       overflow: hidden;
       border-radius: 8px;
-      cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 10px rgba(255 255 255 / 0.1);
+      cursor: pointer;
     }
     .item:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255 255 255 / 0.3);
-      z-index: 2;
+      box-shadow: 0 12px 20px rgba(255, 255, 255, 0.3);
     }
     .item img {
       width: 100%;
       display: block;
       border-radius: 8px;
+      object-fit: cover;
+      height: 200px;
       transition: filter 0.3s ease;
     }
     .item:hover img {
-      filter: brightness(1.1);
-    }
-
-    /* Lightbox overlay */
-    #lightbox {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.9);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      cursor: pointer;
-    }
-    #lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px white;
+      filter: brightness(0.85);
     }
   </style>
 </head>
@@ -96,37 +77,14 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
+
   <main>
     <h1>Mes Réalisations</h1>
     <div class="grid">
-      <div class="item"><img src="/portfolio/images/dr_ph3.jpg" alt="Photo 1" /></div>
-      <div class="item"><img src="/portfolio/images/dr_ph1.jpg" alt="Photo 2" /></div>
-      <div class="item"><img src="/portfolio/images/dr_ph2.jpg" alt="Photo 3" /></div>
+      <div class="item"><img src="images/dr_ph1.jpg" alt="Photo 1" /></div>
+      <div class="item"><img src="images/dr_ph2.jpg" alt="Photo 2" /></div>
+      <div class="item"><img src="images/dr_ph3.jpg" alt="Photo 3" /></div>
     </div>
   </main>
-
-  <!-- Lightbox -->
-  <div id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Photo agrandie" />
-  </div>
-
-  <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    document.querySelectorAll('.item img').forEach(img => {
-      img.addEventListener('click', () => {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-      });
-    });
-
-    function closeLightbox() {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-      lightboxImg.alt = '';
-    }
-  </script>
 </body>
 </html>
