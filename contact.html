@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Contact - Romain VRNX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -12,129 +12,141 @@
       background: #111;
       color: #fff;
     }
+
     header {
       background: #000;
       padding: 1em 2em;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
+
+    header a.logo {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.2em;
+      text-decoration: none;
+    }
+
     nav a {
       color: #aaa;
       margin-left: 20px;
       text-decoration: none;
+      transition: color 0.3s;
     }
+
     nav a:hover {
       color: #fff;
     }
+
     main {
-      padding: 80px 20px;
+      padding: 60px 20px;
       max-width: 700px;
       margin: auto;
+      animation: fadeIn 1s ease-in-out;
     }
-    .social-links {
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .socials {
       display: flex;
+      justify-content: center;
       gap: 30px;
       margin-bottom: 40px;
     }
-    .social-links a {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
-      color: #fff;
-      transition: transform 0.2s ease;
+
+    .socials a img {
+      width: 40px;
+      height: 40px;
+      transition: transform 0.3s ease;
     }
-    .social-links a:hover {
-      transform: scale(1.05);
+
+    .socials a:hover img {
+      transform: scale(1.15);
     }
-    .social-links img {
-      width: 30px;
-      height: 30px;
-      margin-right: 10px;
+
+    form {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
     }
-    input,
-    textarea {
+
+    input, textarea {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
+      padding: 12px;
+      margin-bottom: 20px;
       background: #222;
-      border: none;
+      border: 1px solid #444;
       color: #fff;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 6px;
+      font-size: 1em;
     }
+
     button {
       background: #fff;
       color: #111;
-      padding: 10px 20px;
+      padding: 12px 25px;
+      font-size: 1em;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
-      font-weight: bold;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease;
     }
+
     button:hover {
       background: #ccc;
     }
-    a {
-      color: #fff;
-      text-decoration: none;
+
+    @media (max-width: 600px) {
+      .socials {
+        gap: 20px;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <div><strong>Romain VRNX</strong></div>
+    <a href="index.html" class="logo">Romain VRNX</a>
     <nav>
       <a href="index.html">Accueil</a>
       <a href="portfolio.html">Portfolio</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main>
-    <h1>Contact me</h1>
 
-    <div class="social-links">
-      <a href="https://www.instagram.com/romainvrnx?igsh=MW1pNTYyemhsZGRtdA==" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
-        Instagram
+  <main>
+    <div class="socials">
+      <a href="https://instagram.com" target="_blank" title="Instagram">
+        <img src="https://cdn.simpleicons.org/instagram/FF0069" alt="Instagram" />
       </a>
-      <a href="https://youtube.com/@romainvrnx?si=Vn8814Vhn7DL91j_" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
-        YouTube
+      <a href="https://youtube.com" target="_blank" title="YouTube">
+        <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" />
       </a>
     </div>
 
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="contact" />
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="merci.html">
+      <input type="hidden" name="form-name" value="contact">
       <p style="display:none">
         <label>Ne pas remplir ce champ : <input name="bot-field" /></label>
       </p>
 
-      <p>
-        <label>Nom :<br />
-          <input type="text" name="name" required />
-        </label>
-      </p>
+      <label for="name">Nom :</label>
+      <input type="text" id="name" name="name" required>
 
-      <p>
-        <label>Email :<br />
-          <input type="email" name="email" required />
-        </label>
-      </p>
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" required>
 
-      <p>
-        <label>Message :<br />
-          <textarea name="message" required></textarea>
-        </label>
-      </p>
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
 
-      <p>
-        <button type="submit">Envoyer</button>
-      </p>
+      <button type="submit">Envoyer</button>
     </form>
   </main>
+
 </body>
 </html>
