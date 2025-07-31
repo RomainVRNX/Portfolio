@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Portfolio - Romain VRNX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
   <style>
     body {
@@ -21,17 +21,17 @@
       align-items: center;
     }
 
-    header h1 a {
+    header h1 {
+      font-size: 20px;
       color: #fff;
-      text-decoration: none;
-      font-size: 22px;
+      margin: 0;
     }
 
     nav a {
       color: #aaa;
       margin-left: 20px;
       text-decoration: none;
-      transition: color 0.3s;
+      font-size: 16px;
     }
 
     nav a:hover {
@@ -46,64 +46,52 @@
 
     h1 {
       text-align: center;
-      font-size: 36px;
+      font-size: 32px;
       margin-bottom: 40px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
 
     .item {
       position: relative;
       overflow: hidden;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .item img,
-    .item video {
+    .item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .item img {
       width: 100%;
+      height: auto;
       display: block;
-      border-radius: 10px;
-      transition: transform 0.4s ease, opacity 0.4s ease;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
     }
 
-    .item:hover img,
-    .item:hover video {
+    .item:hover img {
       transform: scale(1.05);
-      opacity: 0.85;
     }
 
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      font-size: 18px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .item:hover .overlay {
-      opacity: 1;
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #666;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1><a href="index.html">Romain VRNX</a></h1>
+    <h1><a href="index.html" style="color: inherit; text-decoration: none;">Romain VRNX</a></h1>
     <nav>
       <a href="index.html">Accueil</a>
       <a href="portfolio.html">Portfolio</a>
@@ -115,30 +103,19 @@
     <h1>Mes Réalisations</h1>
     <div class="grid">
       <div class="item">
-        <img src="https://via.placeholder.com/600x400.png?text=Photo+1" alt="Projet 1">
-        <div class="overlay">Voir le projet</div>
+        <img src="images/dr_ph1.jpg" alt="Projet 1">
       </div>
       <div class="item">
-        <video muted autoplay loop playsinline>
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
-        <div class="overlay">Voir le projet</div>
+        <img src="images/dr_ph2.jpg" alt="Projet 2">
       </div>
       <div class="item">
-        <img src="https://via.placeholder.com/600x400.png?text=Photo+2" alt="Projet 2">
-        <div class="overlay">Voir le projet</div>
-      </div>
-      <div class="item">
-        <img src="https://via.placeholder.com/600x400.png?text=Photo+3" alt="Projet 3">
-        <div class="overlay">Voir le projet</div>
-      </div>
-      <div class="item">
-        <video muted autoplay loop playsinline>
-          <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-        </video>
-        <div class="overlay">Voir le projet</div>
+        <img src="images/dr_ph3.jpg" alt="Projet 3">
       </div>
     </div>
   </main>
+
+  <footer>
+    &copy; 2025 Romain VRNX — Tous droits réservés
+  </footer>
 </body>
 </html>
