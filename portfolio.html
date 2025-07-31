@@ -66,6 +66,35 @@
     .item:hover img {
       filter: brightness(0.85);
     }
+
+    /* Lightbox overlay */
+    #lightboxOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: pointer;
+      animation: fadeIn 0.3s ease forwards;
+    }
+    #lightboxOverlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
+      animation: zoomIn 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.8);}
+      to {transform: scale(1);}
+    }
   </style>
 </head>
 <body>
@@ -86,5 +115,43 @@
       <div class="item"><img src="images/dr_ph3.jpg" alt="Photo 3" /></div>
     </div>
   </main>
+
+  <!-- Lightbox overlay -->
+  <div id="lightboxOverlay" aria-hidden="true" role="dialog" tabindex="-1">
+    <img src="" alt="Agrandissement" />
+  </div>
+
+  <script>
+    const lightboxOverlay = document.getElementById('lightboxOverlay');
+    const lightboxImage = lightboxOverlay.querySelector('img');
+    const items = document.querySelectorAll('.item img');
+
+    items.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightboxOverlay.style.display = 'flex';
+        lightboxOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // Empêche scroll en arrière-plan
+      });
+    });
+
+    lightboxOverlay.addEventListener('click', () => {
+      lightboxOverlay.style.display = 'none';
+      lightboxOverlay.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+      document.body.style.overflow = ''; // Réactive scroll
+    });
+
+    // Fermeture avec touche Échap
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && lightboxOverlay.style.display === 'flex') {
+        lightboxOverlay.style.display = 'none';
+        lightboxOverlay.setAttribute('aria-hidden', 'true');
+        lightboxImage.src = '';
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
 </body>
 </html>
