@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Contact - Romain VRNX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -17,13 +17,11 @@
       padding: 1em 2em;
       display: flex;
       justify-content: space-between;
-      align-items: center;
     }
     nav a {
       color: #aaa;
       margin-left: 20px;
       text-decoration: none;
-      font-weight: 500;
     }
     nav a:hover {
       color: #fff;
@@ -32,106 +30,57 @@
       padding: 80px 20px;
       max-width: 700px;
       margin: auto;
-      text-align: center;
     }
-    /* Réseaux sociaux */
     .social-links {
-      margin-bottom: 40px;
       display: flex;
-      justify-content: center;
       gap: 30px;
+      margin-bottom: 40px;
     }
     .social-links a {
-      color: #fff;
-      font-size: 24px;
-      text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 10px;
-      transition: color 0.3s ease;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      color: #fff;
+      transition: transform 0.2s ease;
     }
     .social-links a:hover {
-      color: #1da1f2;
+      transform: scale(1.05);
     }
-    /* Icônes Instagram et YouTube simples en SVG */
-    .social-links svg {
-      width: 24px;
-      height: 24px;
-      fill: currentColor;
-    }
-    form {
-      background: #222;
-      padding: 30px 35px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255 255 255 / 0.07);
-      max-width: 500px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .form-group {
-      position: relative;
-      margin-bottom: 30px;
+    .social-links img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
     }
     input,
     textarea {
       width: 100%;
-      background: transparent;
-      border: 2px solid #555;
-      border-radius: 8px;
-      padding: 14px 18px;
-      font-size: 16px;
-      color: #fff;
-      transition: border-color 0.3s ease, background-color 0.3s ease;
-      resize: vertical;
-      font-family: 'DM Sans', sans-serif;
-    }
-    input::placeholder,
-    textarea::placeholder {
-      color: transparent;
-    }
-    input:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #1da1f2;
-      background-color: #1a1a1a;
-    }
-    label {
-      position: absolute;
-      top: 50%;
-      left: 18px;
-      transform: translateY(-50%);
-      color: #888;
-      font-size: 16px;
-      pointer-events: none;
-      transition: all 0.3s ease;
+      padding: 10px;
+      margin-bottom: 15px;
       background: #222;
-      padding: 0 6px;
-      border-radius: 4px;
-    }
-    input:focus + label,
-    input:not(:placeholder-shown) + label,
-    textarea:focus + label,
-    textarea:not(:placeholder-shown) + label {
-      top: -10px;
-      font-size: 13px;
-      color: #1da1f2;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 16px;
     }
     button {
-      background: #1da1f2;
-      color: #fff;
-      font-weight: 700;
-      font-size: 18px;
-      padding: 14px 0;
+      background: #fff;
+      color: #111;
+      padding: 10px 20px;
       border: none;
-      border-radius: 10px;
+      border-radius: 5px;
       cursor: pointer;
-      width: 100%;
-      box-shadow: 0 6px 12px rgba(29, 161, 242, 0.5);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
     }
     button:hover {
-      background: #0d8ddb;
-      box-shadow: 0 8px 16px rgba(13, 141, 219, 0.7);
+      background: #ccc;
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -148,38 +97,43 @@
     <h1>Me Contacter</h1>
 
     <div class="social-links">
-      <a href="https://instagram.com/tonprofil" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5zm8.75 1.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+      <a href="https://instagram.com/tonprofil" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
         Instagram
       </a>
-      <a href="https://youtube.com/tonprofil" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6zm12-3c0-1.26-.13-2.48-.37-3.62-.27-1.45-1.19-2.6-2.51-3.2-.94-.42-1.96-.5-3.01-.5H8.9C7.46 4.54 6 5.64 6 7.28v9.44c0 1.64 1.46 2.74 2.9 2.74h7.11c1.05 0 2.07-.08 3.01-.5 1.32-.6 2.24-1.75 2.51-3.2.24-1.14.37-2.36.37-3.62z"/></svg>
+      <a href="https://youtube.com/tonprofil" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
         YouTube
       </a>
     </div>
 
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" >
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact" />
       <p style="display:none">
         <label>Ne pas remplir ce champ : <input name="bot-field" /></label>
       </p>
 
-      <div class="form-group">
-        <input id="name" type="text" name="name" required placeholder=" " />
-        <label for="name">Nom</label>
-      </div>
+      <p>
+        <label>Nom :<br />
+          <input type="text" name="name" required />
+        </label>
+      </p>
 
-      <div class="form-group">
-        <input id="email" type="email" name="email" required placeholder=" " />
-        <label for="email">Email</label>
-      </div>
+      <p>
+        <label>Email :<br />
+          <input type="email" name="email" required />
+        </label>
+      </p>
 
-      <div class="form-group">
-        <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
-        <label for="message">Message</label>
-      </div>
+      <p>
+        <label>Message :<br />
+          <textarea name="message" required></textarea>
+        </label>
+      </p>
 
-      <button type="submit">Envoyer</button>
+      <p>
+        <button type="submit">Envoyer</button>
+      </p>
     </form>
   </main>
 </body>
