@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wildlife - Romain VRNX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background: #111;
+      color: #fff;
+    }
+    header {
+      background: #000;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: #aaa;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    main {
+      max-width: 1200px;
+      margin: 80px auto 40px;
+      padding: 0 20px;
+    }
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 60px;
+    }
+
+    .masonry-grid {
+      column-count: 3;
+      column-gap: 15px;
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .masonry-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .masonry-item img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .masonry-grid {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .masonry-grid {
+        column-count: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>Romain VRNX</strong></div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="travel.html">Travel</a>
+      <a href="wildlife.html">Wildlife</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Wildlife - Galerie</h1>
+    <div class="masonry-grid" id="masonry-grid">
+
+      <!-- 💬 Remplace les images ci-dessous par tes propres URL Cloudinary -->
+      <div class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1555685812-4b943f1cb0eb" alt="" loading="lazy">
+      </div>
+      <div class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1604578126262-7a6f5bd296db" alt="" loading="lazy">
+      </div>
+      <div class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1617652414029-8c83a66e0e19" alt="" loading="lazy">
+      </div>
+      <div class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1508675801634-7d6a9f4f6c2b" alt="" loading="lazy">
+      </div>
+      <div class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1510074377623-8cf13fb90f97" alt="" loading="lazy">
+      </div>
+      <div class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84f4" alt="" loading="lazy">
+      </div>
+      <!-- ✅ Ajoute ou duplique ce bloc autant que nécessaire -->
+
+    </div>
+  </main>
+
+  <script>
+    // Effet d'apparition au scroll
+    const items = document.querySelectorAll('.masonry-item');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    items.forEach(item => observer.observe(item));
+
+    // Mélanger les images à chaque chargement
+    const grid = document.getElementById('masonry-grid');
+    const shuffled = Array.from(grid.children).sort(() => Math.random() - 0.5);
+    shuffled.forEach(item => grid.appendChild(item));
+  </script>
+</body>
+</html>
