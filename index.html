@@ -6,8 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: 'DM Sans', sans-serif;
       background: #111;
       color: #fff;
@@ -43,6 +48,7 @@
       margin-left: 20px;
       text-decoration: none;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
@@ -143,7 +149,6 @@
       color: #666;
     }
 
-    /* Scroll animation (parallax effet léger) */
     .scroll-fade {
       opacity: 0;
       transform: translateY(40px);
@@ -154,9 +159,27 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Overlay transition */
+    .transition-overlay {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .transition-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
   </style>
 </head>
 <body>
+  <div class="transition-overlay" id="transitionOverlay"></div>
+
   <header>
     <div><strong>Romain VRNX</strong></div>
     <nav>
@@ -210,9 +233,8 @@
   </footer>
 
   <script>
-    // Défilement avec effet
+    // Animation de scroll
     const elements = document.querySelectorAll('.scroll-fade');
-
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -220,8 +242,24 @@
         }
       });
     }, { threshold: 0.1 });
-
     elements.forEach(el => observer.observe(el));
+
+    // Transition de sortie douce entre pages
+    const links = document.querySelectorAll('a[href]');
+    const overlay = document.getElementById('transitionOverlay');
+
+    links.forEach(link => {
+      const url = link.getAttribute('href');
+      if (url && !url.startsWith('http') && !url.startsWith('#') && !link.hasAttribute('target')) {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          overlay.classList.add('active');
+          setTimeout(() => {
+            window.location = url;
+          }, 500);
+        });
+      }
+    });
   </script>
 </body>
 </html>
