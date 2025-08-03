@@ -15,9 +15,6 @@
       font-family: 'DM Sans', sans-serif;
       background: #111;
       color: #fff;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
     }
 
     header {
@@ -33,7 +30,6 @@
       margin-left: 20px;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
     }
 
     nav a:hover {
@@ -50,21 +46,11 @@
       text-align: center;
       font-weight: 700;
       margin-bottom: 60px;
-      user-select: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    h1.fade-in {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .portfolio-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
       gap: 30px;
     }
 
@@ -74,23 +60,31 @@
       width: 50%;
     }
 
+    @media (max-width: 768px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      .portfolio-grid .item:nth-child(3) {
+        width: 100%;
+        grid-column: auto;
+      }
+    }
+
     .item {
       position: relative;
       overflow: hidden;
       border-radius: 10px;
       cursor: pointer;
       opacity: 0;
-      transform: translateY(20px) scale(1.05);
-      filter: blur(4px) grayscale(60%) brightness(70%);
-      animation: none;
-      transition: filter 0.4s ease, opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform, filter;
+      transform: translateY(20px);
+      filter: grayscale(60%) brightness(70%);
+      transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
     }
 
     .item.visible {
       opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0) grayscale(0) brightness(100%);
+      transform: translateY(0);
+      filter: none;
     }
 
     .item img {
@@ -99,13 +93,9 @@
       object-fit: cover;
       display: block;
       transition: filter 0.4s ease;
-      will-change: filter;
-      user-select: none;
-      pointer-events: none;
     }
 
-    .item:hover img,
-    .item:focus img {
+    .item:hover img {
       filter: brightness(0.9);
     }
 
@@ -120,28 +110,27 @@
       font-weight: bold;
       color: #fff;
       text-align: center;
-      user-select: none;
     }
 
-    /* Mobile responsiveness & performance tweaks */
     @media (max-width: 768px) {
-      .portfolio-grid {
-        grid-template-columns: 1fr;
+      .item {
+        filter: none !important;
+        transform: translateY(20px) scale(1.02);
+        transition: opacity 0.6s ease, transform 0.6s ease;
       }
-
-      .portfolio-grid .item:nth-child(3) {
-        width: 100%;
-        grid-column: auto;
-      }
-
-      .item img {
-        height: 180px;
+      .item.visible {
+        filter: none !important;
+        transform: translateY(0) scale(1);
+        opacity: 1;
       }
     }
 
-    @media (max-width: 480px) {
-      .item img {
-        height: 140px;
+    @media (prefers-reduced-motion: reduce) {
+      .item {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
       }
     }
   </style>
@@ -157,49 +146,56 @@
   </header>
 
   <main>
-    <h1 class="scroll-fade">Mes Réalisations</h1>
+    <h1>Mes Réalisations</h1>
     <div class="portfolio-grid">
-      <a href="travel.html" class="item scroll-fade" tabindex="0" >
-        <img src="images/travel_thumb.jpg" alt="Travel" loading="lazy" />
+      <a href="travel.html" class="item" style="animation-delay: 0s;">
+        <img 
+          src="images/travel_thumb.jpg"
+          srcset="images/travel_thumb_small.jpg 480w, images/travel_thumb_medium.jpg 768w, images/travel_thumb.jpg 1200w"
+          sizes="(max-width: 480px) 90vw, (max-width: 768px) 80vw, 600px"
+          alt="Travel"
+          loading="lazy"
+        />
         <div class="item-title">Travel</div>
       </a>
-      <a href="underwater.html" class="item scroll-fade" tabindex="0" >
-        <img src="images/underwater_thumb.jpg" alt="Underwater" loading="lazy" />
+      <a href="underwater.html" class="item" style="animation-delay: 0.2s;">
+        <img 
+          src="images/underwater_thumb.jpg"
+          srcset="images/underwater_thumb_small.jpg 480w, images/underwater_thumb_medium.jpg 768w, images/underwater_thumb.jpg 1200w"
+          sizes="(max-width: 480px) 90vw, (max-width: 768px) 80vw, 600px"
+          alt="Underwater"
+          loading="lazy"
+        />
         <div class="item-title">Underwater</div>
       </a>
-      <a href="wildlife.html" class="item scroll-fade" tabindex="0" >
-        <img src="images/dr_ph3.jpg" alt="Wildlife" loading="lazy" />
+      <a href="wildlife.html" class="item" style="animation-delay: 0.4s;">
+        <img 
+          src="images/dr_ph3.jpg"
+          srcset="images/dr_ph3_small.jpg 480w, images/dr_ph3_medium.jpg 768w, images/dr_ph3.jpg 1200w"
+          sizes="(max-width: 480px) 90vw, (max-width: 768px) 80vw, 600px"
+          alt="Wildlife"
+          loading="lazy"
+        />
         <div class="item-title">Wildlife</div>
       </a>
     </div>
   </main>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const observerOptions = {
-        threshold: 0.2
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-            if(entry.target.classList.contains('scroll-fade')) {
-              entry.target.classList.add('visible');
-            }
-          } else {
-            // Retirer l’effet pour refaire l’animation à chaque scroll (illimité)
-            entry.target.classList.remove('fade-in');
-            if(entry.target.classList.contains('scroll-fade')) {
-              entry.target.classList.remove('visible');
-            }
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll('.scroll-fade').forEach(el => {
-        observer.observe(el);
+    // Intersection Observer pour fade-in au scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
       });
+    }, {
+      threshold: 0.2
+    });
+
+    document.querySelectorAll('.item').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>
