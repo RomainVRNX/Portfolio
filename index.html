@@ -76,8 +76,9 @@
 
     .hero-img {
       width: 100%;
-      max-height: 320px;
+      max-height: 240px; /* ↓ hauteur réduite */
       object-fit: cover;
+      object-position: center;
       border-radius: 12px;
       margin: 40px auto;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -100,13 +101,13 @@
 
     .cta-button {
       display: inline-block;
-      margin-top: 20px;
-      padding: 14px 38px;
+      margin-top: 25px;
+      padding: 18px 48px; /* ↑ plus large */
       background-color: #fff;
       color: #000;
       font-weight: bold;
-      font-size: 17px;
-      border-radius: 30px;
+      font-size: 18px; /* ↑ taille texte */
+      border-radius: 32px;
       text-decoration: none;
       transition: background 0.3s ease, transform 0.3s ease;
     }
@@ -126,12 +127,12 @@
     .social-icons a svg {
       width: 32px;
       height: 32px;
-      fill: #bbb;
+      fill: #ccc;
       transition: fill 0.3s ease, transform 0.3s ease;
     }
 
     .social-icons a:hover svg {
-      fill: #f14668; /* teinte rosée élégante */
+      fill: #f14668;
       transform: scale(1.1);
     }
 
@@ -211,17 +212,17 @@
 
     scrollElements.forEach(el => observer.observe(el));
 
-    // Page transition on navigation
+    // Page transition
     const links = document.querySelectorAll('a[href]');
     links.forEach(link => {
       if (link.hostname === window.location.hostname) {
         link.addEventListener('click', function (e) {
           e.preventDefault();
           const url = this.getAttribute('href');
-          document.body.style.animation = 'fadeOut 0.5s ease forwards';
+          document.body.style.animation = 'fadeOut 0.4s ease forwards';
           setTimeout(() => {
             window.location.href = url;
-          }, 400);
+          }, 350);
         });
       }
     });
