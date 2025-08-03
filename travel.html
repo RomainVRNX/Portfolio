@@ -50,10 +50,8 @@
     .masonry-item {
       break-inside: avoid;
       margin-bottom: 15px;
-      position: relative;
       border-radius: 10px;
       overflow: hidden;
-      background: #222;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
@@ -69,29 +67,6 @@
       display: block;
       border-radius: 10px;
       object-fit: cover;
-    }
-
-    .item-title {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-      padding: 15px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-      text-align: center;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-      border-radius: 0 0 10px 10px;
-      pointer-events: none;
-      user-select: none;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
-    }
-
-    .masonry-item:hover .item-title {
-      transform: scale(1.05);
-      text-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
     }
 
     @media (max-width: 768px) {
@@ -119,36 +94,30 @@
   </header>
 
   <main>
-    <h1>Travel - Mes Voyages</h1>
+    <h1>Travel - Galerie</h1>
     <div class="masonry-grid" id="masonry-grid">
-      
-      <!-- ❌ Exemples à remplacer : colle ici tes images Cloudinary -->
+
+      <!-- 💬 Tu peux remplacer ces images par tes liens Cloudinary -->
       <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Plage paradisiaque" loading="lazy">
-        <div class="item-title">Plage paradisiaque</div>
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Montagnes au lever du soleil" loading="lazy">
-        <div class="item-title">Lever de soleil</div>
+        <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1519817650390-64a93db511aa" alt="Ville la nuit" loading="lazy">
-        <div class="item-title">Ville de nuit</div>
+        <img src="https://images.unsplash.com/photo-1519817650390-64a93db511aa" alt="" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Désert en voyage" loading="lazy">
-        <div class="item-title">Désert</div>
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" alt="Forêt verte" loading="lazy">
-        <div class="item-title">Forêt tropicale</div>
+        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" alt="" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1511732351033-7d66b3c7d03a" alt="Rue pavée en Europe" loading="lazy">
-        <div class="item-title">Vieille ville</div>
+        <img src="https://images.unsplash.com/photo-1511732351033-7d66b3c7d03a" alt="" loading="lazy">
       </div>
-      <!-- ✅ Tu peux dupliquer ce bloc pour ajouter d’autres images -->
-      
+      <!-- ✅ Ajoute ou duplique ce bloc autant que nécessaire -->
+
     </div>
   </main>
 
