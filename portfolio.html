@@ -15,6 +15,9 @@
       font-family: 'DM Sans', sans-serif;
       background: #111;
       color: #fff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     header {
@@ -30,6 +33,7 @@
       margin-left: 20px;
       text-decoration: none;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
@@ -46,6 +50,15 @@
       text-align: center;
       font-weight: 700;
       margin-bottom: 60px;
+      user-select: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    h1.fade-in {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .portfolio-grid {
@@ -61,26 +74,23 @@
       width: 50%;
     }
 
-    @media (max-width: 768px) {
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .portfolio-grid .item:nth-child(3) {
-        width: 100%;
-        grid-column: auto;
-      }
-    }
-
     .item {
       position: relative;
       overflow: hidden;
       border-radius: 10px;
       cursor: pointer;
       opacity: 0;
-      transform: scale(1.05);
+      transform: translateY(20px) scale(1.05);
       filter: blur(4px) grayscale(60%) brightness(70%);
-      animation: cinematic-in 1.8s ease forwards;
+      animation: none;
+      transition: filter 0.4s ease, opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform, filter;
+    }
+
+    .item.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0) grayscale(0) brightness(100%);
     }
 
     .item img {
@@ -89,9 +99,13 @@
       object-fit: cover;
       display: block;
       transition: filter 0.4s ease;
+      will-change: filter;
+      user-select: none;
+      pointer-events: none;
     }
 
-    .item:hover img {
+    .item:hover img,
+    .item:focus img {
       filter: brightness(0.9);
     }
 
@@ -106,18 +120,28 @@
       font-weight: bold;
       color: #fff;
       text-align: center;
+      user-select: none;
     }
 
-    @keyframes cinematic-in {
-      0% {
-        opacity: 0;
-        transform: scale(1.08);
-        filter: blur(5px) grayscale(80%) brightness(50%);
+    /* Mobile responsiveness & performance tweaks */
+    @media (max-width: 768px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
       }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-        filter: blur(0) grayscale(0) brightness(100%);
+
+      .portfolio-grid .item:nth-child(3) {
+        width: 100%;
+        grid-column: auto;
+      }
+
+      .item img {
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .item img {
+        height: 140px;
       }
     }
   </style>
@@ -133,21 +157,50 @@
   </header>
 
   <main>
-    <h1>Mes Réalisations</h1>
+    <h1 class="scroll-fade">Mes Réalisations</h1>
     <div class="portfolio-grid">
-      <a href="travel.html" class="item" style="animation-delay: 0s;">
-        <img src="images/travel_thumb.jpg" alt="Travel" />
+      <a href="travel.html" class="item scroll-fade" tabindex="0" >
+        <img src="images/travel_thumb.jpg" alt="Travel" loading="lazy" />
         <div class="item-title">Travel</div>
       </a>
-      <a href="underwater.html" class="item" style="animation-delay: 0.2s;">
-        <img src="images/underwater_thumb.jpg" alt="Underwater" />
+      <a href="underwater.html" class="item scroll-fade" tabindex="0" >
+        <img src="images/underwater_thumb.jpg" alt="Underwater" loading="lazy" />
         <div class="item-title">Underwater</div>
       </a>
-      <a href="wildlife.html" class="item" style="animation-delay: 0.4s;">
-        <img src="images/dr_ph3.jpg" alt="Wildlife" />
+      <a href="wildlife.html" class="item scroll-fade" tabindex="0" >
+        <img src="images/dr_ph3.jpg" alt="Wildlife" loading="lazy" />
         <div class="item-title">Wildlife</div>
       </a>
     </div>
   </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observerOptions = {
+        threshold: 0.2
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            if(entry.target.classList.contains('scroll-fade')) {
+              entry.target.classList.add('visible');
+            }
+          } else {
+            // Retirer l’effet pour refaire l’animation à chaque scroll (illimité)
+            entry.target.classList.remove('fade-in');
+            if(entry.target.classList.contains('scroll-fade')) {
+              entry.target.classList.remove('visible');
+            }
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.scroll-fade').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
