@@ -57,7 +57,7 @@
 
     .hero-img {
       width: 100%;
-      max-height: 580px; /* légèrement augmenté */
+      max-height: 580px;
       object-fit: cover;
       object-position: center;
       border-radius: 12px;
@@ -88,28 +88,39 @@
       color: #ccc;
       max-width: 800px;
       margin: 0 auto 40px;
-      animation: fadeInUp 1.2s ease 0.5s forwards;
       opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
     .see-work-btn {
       display: inline-block;
-      padding: 12px 28px;
+      padding: 16px 36px;
       background: #fff;
       color: #111;
       font-weight: bold;
       text-decoration: none;
-      border-radius: 8px;
-      font-size: 18px;
-      margin-top: 20px;
+      border-radius: 10px;
+      font-size: 20px;
+      margin-top: 30px;
       transition: transform 0.3s ease, background 0.3s ease;
-      animation: fadeInUp 1.4s ease 1s forwards;
       opacity: 0;
+      transform: translateY(20px);
     }
 
     .see-work-btn:hover {
       background: #eee;
-      transform: scale(1.05);
+      transform: scale(1.08);
+    }
+
+    .see-work-btn.fade-in {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
     .social-icons {
@@ -117,6 +128,14 @@
       display: flex;
       justify-content: center;
       gap: 25px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .social-icons.fade-in {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .social-icons a {
@@ -137,17 +156,6 @@
       font-size: 14px;
       color: #666;
     }
-
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
   </style>
 </head>
 <body>
@@ -165,7 +173,7 @@
 
     <img src="images/accueil.jpg" alt="Portrait Romain" class="hero-img" />
 
-    <p>
+    <p class="scroll-fade">
       I created my first videos at the age of 12, driven by a simple desire to create.
       Around the same time, I discovered scuba diving thanks to my father — a passion that has stayed with me ever since.
       Two years ago, I turned to photography and found the same intensity and sense of fulfillment.
@@ -173,9 +181,9 @@
       Today, I’m looking to take this journey to a professional level, with a focus on underwater photography.
     </p>
 
-    <a href="portfolio.html" class="see-work-btn">See My Work</a>
+    <a href="portfolio.html" class="see-work-btn scroll-fade">See My Work</a>
 
-    <div class="social-icons">
+    <div class="social-icons scroll-fade">
       <a href="https://www.instagram.com/romainvrnx" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       <a href="https://youtube.com/@romainvrnx" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
     </div>
@@ -188,6 +196,21 @@
   <script>
     window.addEventListener("load", () => {
       document.body.classList.add("loaded");
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    document.querySelectorAll('.scroll-fade').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>
