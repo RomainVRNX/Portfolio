@@ -8,9 +8,6 @@
   <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papLF++zHhQWsy9E0T3tgyRX5ZfQ1I60jKk9F4K3WrQKDzkJ/GuQF7RVu3SoE2HVq5uZxOD1OGU+vax2RL8v4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <style>
     * {
       box-sizing: border-box;
@@ -69,7 +66,8 @@
     }
 
     .hero-img {
-      max-width: 280px;
+      width: 100%;
+      max-width: 400px;
       height: auto;
       border-radius: 12px;
       margin: 40px auto;
@@ -115,18 +113,16 @@
       gap: 25px;
     }
 
-    .social-icons a {
-      color: #fff;
-      transition: color 0.3s ease, transform 0.3s ease;
+    .social-icons a svg {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+      transition: fill 0.3s ease, transform 0.3s ease;
     }
 
-    .social-icons a:hover {
-      color: #e74c3c;
+    .social-icons a:hover svg {
+      fill: #e74c3c;
       transform: scale(1.1);
-    }
-
-    .social-icons i {
-      font-size: 28px;
     }
 
     footer {
@@ -174,13 +170,17 @@
 
     <a href="portfolio.html" class="cta-button scroll-fade">See My Work</a>
 
-    <!-- Liens Réseaux sociaux -->
+    <!-- Icônes réseaux -->
     <div class="social-icons scroll-fade">
       <a href="https://www.instagram.com/romainvrnx" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
+        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+          <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66ZM398.8,64H49.2A49.21,49.21,0,0,0,0,113.2V398.8A49.21,49.21,0,0,0,49.2,448H398.8A49.21,49.21,0,0,0,448,398.8V113.2A49.21,49.21,0,0,0,398.8,64ZM224,338.8A82.8,82.8,0,1,1,306.8,256,82.92,82.92,0,0,1,224,338.8Zm136.4-193.2a19.2,19.2,0,1,1,19.2-19.2A19.19,19.19,0,0,1,360.4,145.6Z"/>
+        </svg>
       </a>
       <a href="https://youtube.com/@romainvrnx" target="_blank" aria-label="YouTube">
-        <i class="fab fa-youtube"></i>
+        <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+          <path d="M549.7 124.1c-6.3-23.7-24.8-42.2-48.4-48.5C457.1 64 288 64 288 64S118.9 64 74.7 75.6C51.1 81.9 32.6 100.4 26.3 124.1 16 168.3 16 256 16 256s0 87.7 10.3 131.9c6.3 23.7 24.8 42.2 48.4 48.5C118.9 448 288 448 288 448s169.1 0 213.3-11.6c23.6-6.3 42.1-24.8 48.4-48.5C560 343.7 560 256 560 256s0-87.7-10.3-131.9zM232 336V176l142 80-142 80z"/>
+        </svg>
       </a>
     </div>
   </main>
@@ -190,7 +190,6 @@
   </footer>
 
   <script>
-    // Scroll-fade animation
     const scrollElements = document.querySelectorAll('.scroll-fade');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
