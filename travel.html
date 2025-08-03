@@ -9,12 +9,14 @@
     * {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
       font-family: 'DM Sans', sans-serif;
       background: #111;
       color: #fff;
     }
+
     header {
       background: #000;
       padding: 1em 2em;
@@ -22,24 +24,41 @@
       justify-content: space-between;
       align-items: center;
     }
+
     nav a {
       color: #aaa;
       margin-left: 20px;
       text-decoration: none;
       font-weight: 500;
     }
+
     nav a:hover {
       color: #fff;
     }
+
     main {
       max-width: 1200px;
       margin: 80px auto 40px;
       padding: 0 20px;
     }
+
     h1 {
       text-align: center;
       font-weight: 700;
       margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      text-align: center;
+      font-weight: 600;
+      margin: 80px 0 40px;
+      letter-spacing: 2px;
+      color: #fff;
+      text-transform: uppercase;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+      padding: 20px 0;
     }
 
     .masonry-grid {
@@ -73,11 +92,19 @@
       .masonry-grid {
         column-count: 2;
       }
+
+      .section-title {
+        font-size: 28px;
+      }
     }
 
     @media (max-width: 480px) {
       .masonry-grid {
         column-count: 1;
+      }
+
+      .section-title {
+        font-size: 24px;
       }
     }
   </style>
@@ -95,36 +122,36 @@
 
   <main>
     <h1>Travel - Galerie</h1>
-    <div class="masonry-grid" id="masonry-grid">
 
-      <!-- 💬 Tu peux remplacer ces images par tes liens Cloudinary -->
-      <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="" loading="lazy">
-      </div>
-      <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="" loading="lazy">
-      </div>
-      <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1519817650390-64a93db511aa" alt="" loading="lazy">
-      </div>
-      <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="" loading="lazy">
-      </div>
-      <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" alt="" loading="lazy">
-      </div>
-      <div class="masonry-item">
-        <img src="https://images.unsplash.com/photo-1511732351033-7d66b3c7d03a" alt="" loading="lazy">
-      </div>
-      <!-- ✅ Ajoute ou duplique ce bloc autant que nécessaire -->
-
+    <!-- SECTION VIETNAM -->
+    <div class="section-title">Vietnam</div>
+    <div class="masonry-grid" id="vietnam-grid">
+      <!-- 🔽 Remplace ces images par tes URLs -->
+      <div class="masonry-item"><img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Vietnam" loading="lazy"></div>
+      <div class="masonry-item"><img src="https://images.unsplash.com/photo-1511732351033-7d66b3c7d03a" alt="Vietnam" loading="lazy"></div>
     </div>
+
+    <!-- SECTION PHILIPPINES -->
+    <div class="section-title">Philippines</div>
+    <div class="masonry-grid" id="philippines-grid">
+      <!-- 🔽 Remplace ces images par tes URLs -->
+      <div class="masonry-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Philippines" loading="lazy"></div>
+      <div class="masonry-item"><img src="https://images.unsplash.com/photo-1519817650390-64a93db511aa" alt="Philippines" loading="lazy"></div>
+    </div>
+
+    <!-- SECTION THAÏLANDE -->
+    <div class="section-title">Thaïlande</div>
+    <div class="masonry-grid" id="thailande-grid">
+      <!-- 🔽 Remplace ces images par tes URLs -->
+      <div class="masonry-item"><img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" alt="Thaïlande" loading="lazy"></div>
+      <div class="masonry-item"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Thaïlande" loading="lazy"></div>
+    </div>
+
   </main>
 
   <script>
-    // Effet apparition au scroll
+    // Apparition au scroll
     const items = document.querySelectorAll('.masonry-item');
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -134,11 +161,6 @@
     }, { threshold: 0.1 });
 
     items.forEach(item => observer.observe(item));
-
-    // Mélanger les images au chargement
-    const grid = document.getElementById('masonry-grid');
-    const shuffled = Array.from(grid.children).sort(() => Math.random() - 0.5);
-    shuffled.forEach(item => grid.appendChild(item));
   </script>
 </body>
 </html>
