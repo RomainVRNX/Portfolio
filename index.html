@@ -4,13 +4,15 @@
   <meta charset="UTF-8" />
   <title>Accueil - Romain VRNX</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
 
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -23,13 +25,20 @@
     }
 
     @keyframes fadeIn {
-      0% {
+      from {
         opacity: 0;
         filter: blur(10px);
       }
-      100% {
+      to {
         opacity: 1;
         filter: blur(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        filter: blur(10px);
       }
     }
 
@@ -67,8 +76,8 @@
 
     .hero-img {
       width: 100%;
-      max-width: 400px;
-      height: auto;
+      max-height: 320px;
+      object-fit: cover;
       border-radius: 12px;
       margin: 40px auto;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -92,18 +101,19 @@
     .cta-button {
       display: inline-block;
       margin-top: 20px;
-      padding: 12px 28px;
+      padding: 14px 38px;
       background-color: #fff;
       color: #000;
       font-weight: bold;
-      border-radius: 25px;
+      font-size: 17px;
+      border-radius: 30px;
       text-decoration: none;
       transition: background 0.3s ease, transform 0.3s ease;
     }
 
     .cta-button:hover {
       background-color: #ddd;
-      transform: scale(1.05);
+      transform: scale(1.06);
     }
 
     .social-icons {
@@ -116,12 +126,12 @@
     .social-icons a svg {
       width: 32px;
       height: 32px;
-      fill: #fff;
+      fill: #bbb;
       transition: fill 0.3s ease, transform 0.3s ease;
     }
 
     .social-icons a:hover svg {
-      fill: #e74c3c;
+      fill: #f14668; /* teinte rosée élégante */
       transform: scale(1.1);
     }
 
@@ -170,7 +180,6 @@
 
     <a href="portfolio.html" class="cta-button scroll-fade">See My Work</a>
 
-    <!-- Icônes réseaux -->
     <div class="social-icons scroll-fade">
       <a href="https://www.instagram.com/romainvrnx" target="_blank" aria-label="Instagram">
         <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
@@ -190,6 +199,7 @@
   </footer>
 
   <script>
+    // Scroll fade animation
     const scrollElements = document.querySelectorAll('.scroll-fade');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -197,11 +207,24 @@
           entry.target.classList.add('visible');
         }
       });
-    }, {
-      threshold: 0.1
-    });
+    }, { threshold: 0.1 });
 
     scrollElements.forEach(el => observer.observe(el));
+
+    // Page transition on navigation
+    const links = document.querySelectorAll('a[href]');
+    links.forEach(link => {
+      if (link.hostname === window.location.hostname) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const url = this.getAttribute('href');
+          document.body.style.animation = 'fadeOut 0.5s ease forwards';
+          setTimeout(() => {
+            window.location.href = url;
+          }, 400);
+        });
+      }
+    });
   </script>
 </body>
 </html>
