@@ -6,22 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: 'DM Sans', sans-serif;
       background: #111;
       color: #fff;
-      overflow-x: hidden;
-      transition: background 0.5s ease;
+      opacity: 0;
+      transition: opacity 1.2s ease-in;
     }
 
-    /* Effet fondu et scroll */
-    body.fade-in {
-      animation: fadeIn 1.2s ease-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; filter: blur(10px); }
-      to { opacity: 1; filter: blur(0); }
+    body.loaded {
+      opacity: 1;
     }
 
     header {
@@ -31,24 +34,14 @@
       justify-content: space-between;
       align-items: center;
     }
-    header div#logo {
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: #fff;
-      user-select: none;
-      transition: color 0.3s ease;
-    }
-    header div#logo:hover {
-      color: #1e90ff;
-    }
+
     nav a {
       color: #aaa;
       margin-left: 20px;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
     }
+
     nav a:hover {
       color: #fff;
     }
@@ -59,61 +52,90 @@
       margin: auto;
       text-align: center;
     }
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-    }
 
-    .photo-container {
-      margin: 40px auto;
-      max-width: 400px;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-      transition: transform 0.4s ease;
-    }
-    .photo-container img {
+    .hero-img {
       width: 100%;
-      height: auto;
+      max-height: 600px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 12px;
+      margin: 40px auto;
       display: block;
-      transition: transform 0.4s ease;
-    }
-    .photo-container:hover img {
+      transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease;
+      filter: blur(5px) grayscale(20%) brightness(85%);
+      opacity: 0;
       transform: scale(1.05);
+      animation: cinematic-in 2.2s ease forwards;
     }
 
-    .description {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      max-width: 700px;
+    @keyframes cinematic-in {
+      0% {
+        opacity: 0;
+        filter: blur(6px) grayscale(40%) brightness(60%);
+        transform: scale(1.07);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0) grayscale(0) brightness(100%);
+        transform: scale(1);
+      }
+    }
+
+    p {
+      font-size: 18px;
+      color: #ccc;
+      max-width: 800px;
       margin: 0 auto 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
     .see-work-btn {
-      background: #1e90ff;
-      color: #fff;
-      padding: 14px 30px;
-      border: none;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s ease;
-      text-decoration: none;
       display: inline-block;
+      padding: 18px 38px;
+      background: #fff;
+      color: #111;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 20px;
+      margin-top: 30px;
+      transition: transform 0.3s ease, background 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
     }
+
     .see-work-btn:hover {
-      background: #0f5bb5;
+      background: #eee;
       transform: scale(1.08);
     }
 
-    /* Réseaux sociaux */
+    .see-work-btn.fade-in {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
     .social-links {
+      margin-top: 60px;
       display: flex;
       justify-content: center;
       gap: 30px;
-      margin-top: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
     }
+
+    .social-links.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .social-links a {
       display: flex;
       align-items: center;
@@ -124,32 +146,31 @@
       text-decoration: none;
       transition: color 0.3s ease;
     }
+
     .social-links a:hover {
       color: #1e90ff;
     }
+
     .social-links img {
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       display: block;
       filter: none;
       transition: filter 0.3s ease;
     }
 
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #666;
     }
   </style>
 </head>
-<body class="fade-in">
+<body>
   <header>
-    <div id="logo" onclick="location.href='index.html'">Romain VRNX</div>
+    <div><strong>Romain VRNX</strong></div>
     <nav>
       <a href="index.html">Accueil</a>
       <a href="portfolio.html">Portfolio</a>
@@ -158,49 +179,54 @@
   </header>
 
   <main>
-    <h1 class="reveal">Bienvenue sur mon univers visuel</h1>
+    <h1>Welcome to my universe</h1>
 
-    <div class="photo-container reveal">
-      <img src="images/accueil.jpg" alt="Photo de Romain" />
-    </div>
+    <img src="images/accueil.jpg" alt="Portrait Romain" class="hero-img" />
 
-    <div class="description reveal">
-      Passionné de voyage et de plongée, je capture des moments uniques autour du monde. Découvrez mon portfolio, entre terres lointaines et mondes sous-marins.
-    </div>
+    <p class="scroll-fade">
+      I created my first videos at the age of 12, driven by a simple desire to create.
+      Around the same time, I discovered scuba diving thanks to my father — a passion that has stayed with me ever since.
+      Two years ago, I turned to photography and found the same intensity and sense of fulfillment.
+      My many travels, often solo, have helped shape my perspective and refine my artistic approach.
+      Today, I’m looking to take this journey to a professional level, with a focus on underwater photography.
+    </p>
 
-    <a href="portfolio.html" class="see-work-btn reveal">See My Work</a>
+    <a href="portfolio.html" class="see-work-btn scroll-fade">See My Work</a>
 
-    <div class="social-links reveal">
-      <a href="https://www.instagram.com/romainvrnx?igsh=MW1pNTYyemhsZGRtdA==" target="_blank" rel="noopener noreferrer">
+    <div class="social-links scroll-fade">
+      <a href="https://www.instagram.com/romainvrnx" target="_blank" rel="noopener noreferrer">
         <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
         Instagram
       </a>
-      <a href="https://youtube.com/@romainvrnx?si=hSs9oevLL5diSgW8" target="_blank" rel="noopener noreferrer">
+      <a href="https://youtube.com/@romainvrnx" target="_blank" rel="noopener noreferrer">
         <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
         YouTube
       </a>
     </div>
   </main>
 
+  <footer>
+    &copy; 2025 Romain VRNX — Tous droits réservés
+  </footer>
+
   <script>
-    // Défilement fluide
-    const reveals = document.querySelectorAll('.reveal');
-    window.addEventListener('scroll', () => {
-      for (let el of reveals) {
-        const top = el.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
-          el.classList.add('visible');
-        }
-      }
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
     });
-    // Chargement immédiat si visible au début
-    window.addEventListener('load', () => {
-      for (let el of reveals) {
-        const top = el.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
-          el.classList.add('visible');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+          observer.unobserve(entry.target);
         }
-      }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    document.querySelectorAll('.scroll-fade').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>
