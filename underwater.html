@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Underwater - Romain VRNX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background: #111;
+      color: #fff;
+    }
+
+    header {
+      background: #000;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: #aaa;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 80px auto 40px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 60px;
+      font-size: 48px;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .coming-soon {
+      font-size: 28px;
+      margin-top: 80px;
+      opacity: 0;
+      animation: fadeInUp 1.5s ease forwards, float 4s ease-in-out infinite;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 2px;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+        letter-spacing: 5px;
+      }
+
+      .coming-soon {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>Romain VRNX</strong></div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>UNDERWATER</h1>
+    <div class="coming-soon">Coming soon, stay tuned.</div>
+  </main>
+</body>
+</html>
