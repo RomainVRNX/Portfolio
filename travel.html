@@ -122,7 +122,6 @@
     <nav>
       <a href="index.html">Accueil</a>
       <a href="portfolio.html">Portfolio</a>
-      <a href="travel.html">Travel</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
@@ -132,7 +131,7 @@
 
     <!-- VIETNAM -->
     <div class="section-title">Vietnam</div>
-    <div class="masonry-grid" id="vietnam-grid">
+    <div class="masonry-grid">
       <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381612/DSC09716_1_gvc6uy.jpg" alt="Vietnam" loading="lazy"></div>
       <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381546/DSC09967_n7n817.jpg" alt="Vietnam" loading="lazy"></div>
       <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381536/DSC09940_stgtmp.jpg" alt="Vietnam" loading="lazy"></div>
@@ -143,42 +142,36 @@
 
     <!-- PHILIPPINES -->
     <div class="section-title">Philippines</div>
-    <div class="masonry-grid" id="philippines-grid">
+    <div class="masonry-grid">
       <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381989/DJI_0029_utd9z4.jpg" alt="Philippines" loading="lazy"></div>
       <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381992/DSC09201_1_vmtaie.jpg" alt="Philippines" loading="lazy"></div>
       <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381825/DJI_0399_1_vzp8pw.jpg" alt="Philippines" loading="lazy"></div>
       <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381938/DSC09225_vxc6gz.jpg" alt="Philippines" loading="lazy"></div>
       <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381994/dr_ph2_u0dzi9.jpg" alt="Philippines" loading="lazy"></div>
-      <div class="masonry-item"><img src="" alt="Philippines" loading="lazy"></div>
-      <div class="masonry-item"><img src="" alt="Philippines" loading="lazy"></div>
-      
-      
     </div>
 
     <!-- THAILAND -->
     <div class="section-title">Thailand</div>
-    <div class="masonry-grid" id="thailand-grid">
-      <div class="masonry-item"><img src="" alt="Thailand" loading="lazy"></div>
-      <div class="masonry-item"><img src="" alt="Thailand" loading="lazy"></div>
-      <div class="masonry-item"><img src="" alt="Thailand" loading="lazy"></div>
-      <div class="masonry-item"><img src="" alt="Thailand" loading="lazy"></div>>
+    <div class="masonry-grid">
+      <!-- Ajoute tes images ici quand tu les auras -->
+    </div>
   </main>
 
   <script>
-    // Apparition des images
-    const items = document.querySelectorAll('.masonry-item');
-    const titles = document.querySelectorAll('.section-title');
-
+    // Scroll Observer illimité
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible'); // ← permet de relancer l'effet
         }
       });
     }, { threshold: 0.1 });
 
-    items.forEach(item => observer.observe(item));
-    titles.forEach(title => observer.observe(title));
+    document.querySelectorAll('.masonry-item, .section-title').forEach(el => {
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
