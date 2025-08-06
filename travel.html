@@ -119,7 +119,7 @@
       }
     }
 
-    /* === Lightbox === */
+    /* === Lightbox simplifiée === */
     .lightbox {
       display: none;
       position: fixed;
@@ -128,7 +128,14 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: transform 0.3s ease;
+      cursor: zoom-out;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .lightbox.visible {
+      display: flex;
+      opacity: 1;
     }
 
     .lightbox img {
@@ -141,38 +148,6 @@
 
     .lightbox.visible img {
       transform: scale(1);
-    }
-
-    .lightbox.visible {
-      display: flex;
-    }
-
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 50px;
-      color: white;
-      cursor: pointer;
-      user-select: none;
-      padding: 0 20px;
-    }
-
-    .lightbox-prev {
-      left: 10px;
-    }
-
-    .lightbox-next {
-      right: 10px;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 40px;
-      color: #fff;
-      cursor: pointer;
     }
   </style>
 </head>
@@ -199,12 +174,9 @@
     <div class="masonry-grid" id="thailand-grid"></div>
   </main>
 
-  <!-- Lightbox HTML -->
+  <!-- Lightbox simplifiée -->
   <div class="lightbox" id="lightbox">
-    <span class="lightbox-close" id="lightbox-close">&times;</span>
-    <span class="lightbox-nav lightbox-prev" id="lightbox-prev">&#10094;</span>
     <img id="lightbox-img" src="" alt="Image" />
-    <span class="lightbox-nav lightbox-next" id="lightbox-next">&#10095;</span>
   </div>
 
   <script>
@@ -233,7 +205,6 @@
         "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754470436/DSC09602_1_n7arek.jpg",
         "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754470282/DSC09470_1_tndnvo.jpg",
         "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754470181/DSC09533_1_b5460u.jpg"
-        
       ],
       "philippines-grid": [
         "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381989/DJI_0029_utd9z4.jpg",
@@ -294,16 +265,11 @@
       });
     });
 
-    // Lightbox
+    // Lightbox simplifiée
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxClose = document.getElementById('lightbox-close');
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
-    let currentIndex = 0;
 
     function openLightbox(src) {
-      currentIndex = allImages.indexOf(src);
       lightboxImg.src = src;
       lightbox.classList.add('visible');
     }
@@ -313,28 +279,9 @@
       lightboxImg.src = "";
     }
 
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
-      lightboxImg.src = allImages[currentIndex];
-    }
-
-    function showNext() {
-      currentIndex = (currentIndex + 1) % allImages.length;
-      lightboxImg.src = allImages[currentIndex];
-    }
-
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', showPrev);
-    lightboxNext.addEventListener('click', showNext);
     lightbox.addEventListener('click', (e) => {
+      // ferme uniquement si on clique sur le fond (overlay), pas sur l'image
       if (e.target === lightbox) closeLightbox();
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('visible')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') showPrev();
-      if (e.key === 'ArrowRight') showNext();
     });
   </script>
 </body>
