@@ -97,7 +97,6 @@
       .masonry-grid {
         column-count: 2;
       }
-
       .section-title {
         font-size: 32px;
         letter-spacing: 5px;
@@ -108,7 +107,6 @@
       .masonry-grid {
         column-count: 1;
       }
-
       .section-title {
         font-size: 26px;
         letter-spacing: 3px;
@@ -131,46 +129,86 @@
 
     <!-- VIETNAM -->
     <div class="section-title">Vietnam</div>
-    <div class="masonry-grid">
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381612/DSC09716_1_gvc6uy.jpg" alt="Vietnam" loading="lazy"></div>
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381546/DSC09967_n7n817.jpg" alt="Vietnam" loading="lazy"></div>
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381536/DSC09940_stgtmp.jpg" alt="Vietnam" loading="lazy"></div>
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381508/DSC09691_akv7vi.jpg" alt="Vietnam" loading="lazy"></div>
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381485/DSC09887_njelsk.jpg" alt="Vietnam" loading="lazy"></div>
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381470/DJI_0012_nsjh2h.jpg" alt="Vietnam" loading="lazy"></div>
-    </div>
+    <div class="masonry-grid" id="vietnam-grid"></div>
 
     <!-- PHILIPPINES -->
     <div class="section-title">Philippines</div>
-    <div class="masonry-grid">
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381989/DJI_0029_utd9z4.jpg" alt="Philippines" loading="lazy"></div>
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381992/DSC09201_1_vmtaie.jpg" alt="Philippines" loading="lazy"></div>
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381825/DJI_0399_1_vzp8pw.jpg" alt="Philippines" loading="lazy"></div>
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381938/DSC09225_vxc6gz.jpg" alt="Philippines" loading="lazy"></div>
-      <div class="masonry-item"><img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381994/dr_ph2_u0dzi9.jpg" alt="Philippines" loading="lazy"></div>
-    </div>
+    <div class="masonry-grid" id="philippines-grid"></div>
 
     <!-- THAILAND -->
     <div class="section-title">Thailand</div>
-    <div class="masonry-grid">
-      <!-- Ajoute tes images ici quand tu les auras -->
-    </div>
+    <div class="masonry-grid" id="thailand-grid"></div>
   </main>
 
   <script>
-    // Scroll Observer illimité
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible'); // ← permet de relancer l'effet
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.masonry-item, .section-title').forEach(el => {
-      observer.observe(el);
+    const imageData = {
+      "vietnam-grid": [
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381612/DSC09716_1_gvc6uy.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381546/DSC09967_n7n817.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381536/DSC09940_stgtmp.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381508/DSC09691_akv7vi.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381485/DSC09887_njelsk.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381470/DJI_0012_nsjh2h.jpg"
+      ],
+      "philippines-grid": [
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381989/DJI_0029_utd9z4.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381992/DSC09201_1_vmtaie.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381825/DJI_0399_1_vzp8pw.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381938/DSC09225_vxc6gz.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754381994/dr_ph2_u0dzi9.jpg"
+      ],
+      "thailand-grid": [
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754383000/thailand1.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754383001/thailand2.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754383002/thailand3.jpg",
+        "https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754383003/thailand4.jpg"
+      ]
+    };
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    for (const gridId in imageData) {
+      const grid = document.getElementById(gridId);
+      const images = imageData[gridId].slice(); // Clone array
+      shuffle(images); // Mélange
+      images.forEach(src => {
+        const div = document.createElement('div');
+        div.classList.add('masonry-item');
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = "Travel";
+        img.loading = "lazy";
+        div.appendChild(img);
+        grid.appendChild(div);
+        observer.observe(div);
+      });
+    }
+
+    // Réinitialisation animation au scroll (montée/descente)
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.masonry-item').forEach(item => {
+        if (!item.classList.contains('visible')) {
+          observer.observe(item);
+        }
+      });
+      document.querySelectorAll('.section-title').forEach(title => {
+        if (!title.classList.contains('visible')) {
+          observer.observe(title);
+        }
+      });
     });
   </script>
 </body>
