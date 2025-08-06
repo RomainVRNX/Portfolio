@@ -67,6 +67,12 @@
       display: block;
       border-radius: 10px;
       object-fit: cover;
+      transition: transform 0.3s ease;
+      cursor: zoom-in;
+    }
+
+    .masonry-item img:active {
+      transform: scale(1.05);
     }
 
     @media (max-width: 768px) {
@@ -88,17 +94,15 @@
     <nav>
       <a href="index.html">Accueil</a>
       <a href="portfolio.html">Portfolio</a>
-      <a href="travel.html">Travel</a>
-      <a href="wildlife.html">Wildlife</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <main>
-    <h1>Wildlife - Galerie</h1>
+    <h1>WILDLIFE</h1>
     <div class="masonry-grid" id="masonry-grid">
 
-      <!-- 💬 Remplace les images ci-dessous par tes propres URL Cloudinary -->
+      <!-- Images d'exemple (remplace-les avec tes URL à toi) -->
       <div class="masonry-item">
         <img src="https://images.unsplash.com/photo-1555685812-4b943f1cb0eb" alt="" loading="lazy">
       </div>
@@ -117,13 +121,11 @@
       <div class="masonry-item">
         <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84f4" alt="" loading="lazy">
       </div>
-      <!-- ✅ Ajoute ou duplique ce bloc autant que nécessaire -->
-
     </div>
   </main>
 
   <script>
-    // Effet d'apparition au scroll
+    // Apparition au scroll
     const items = document.querySelectorAll('.masonry-item');
 
     const observer = new IntersectionObserver((entries) => {
@@ -136,7 +138,7 @@
 
     items.forEach(item => observer.observe(item));
 
-    // Mélanger les images à chaque chargement
+    // Mélange des images
     const grid = document.getElementById('masonry-grid');
     const shuffled = Array.from(grid.children).sort(() => Math.random() - 0.5);
     shuffled.forEach(item => grid.appendChild(item));
