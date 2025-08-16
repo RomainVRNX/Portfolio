@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'DM Sans', sans-serif;
@@ -28,9 +26,7 @@
       text-decoration: none;
       font-weight: 500;
     }
-    nav a:hover {
-      color: #fff;
-    }
+    nav a:hover { color: #fff; }
     main {
       max-width: 1200px;
       margin: 80px auto 40px;
@@ -41,12 +37,10 @@
       font-weight: 700;
       margin-bottom: 60px;
     }
-
     .masonry-grid {
       column-count: 3;
       column-gap: 15px;
     }
-
     .masonry-item {
       break-inside: avoid;
       margin-bottom: 15px;
@@ -55,36 +49,50 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
+      cursor: pointer;
     }
-
     .masonry-item.visible {
       opacity: 1;
       transform: translateY(0);
     }
-
     .masonry-item img {
       width: 100%;
       display: block;
       border-radius: 10px;
       object-fit: cover;
       transition: transform 0.3s ease;
-      cursor: zoom-in;
     }
-
-    .masonry-item img:active {
-      transform: scale(1.05);
+    .masonry-item:hover img {
+      transform: scale(1.03);
     }
-
     @media (max-width: 768px) {
-      .masonry-grid {
-        column-count: 2;
-      }
+      .masonry-grid { column-count: 2; }
+    }
+    @media (max-width: 480px) {
+      .masonry-grid { column-count: 1; }
     }
 
-    @media (max-width: 480px) {
-      .masonry-grid {
-        column-count: 1;
-      }
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -102,63 +110,83 @@
     <h1>WILDLIFE</h1>
     <div class="masonry-grid" id="masonry-grid">
 
-      <!-- Images d'exemple (remplace-les avec tes URL à toi) -->
       <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481815/DSC07044_ywt6yk.jpg" alt="" loading="lazy">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481815/DSC07044_ywt6yk.jpg" alt="Wildlife" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481792/DSC07900_wvzc0b.jpg" alt="" loading="lazy">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481792/DSC07900_wvzc0b.jpg" alt="Wildlife" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481787/DSC08448_1_pbxejg.jpg" alt="" loading="lazy">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481787/DSC08448_1_pbxejg.jpg" alt="Wildlife" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481697/DSC07394_1_yjxpxo.jpg" alt="" loading="lazy">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481697/DSC07394_1_yjxpxo.jpg" alt="Wildlife" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754483012/DSC08462_1_cpk6k4.jpg" alt="" loading="lazy">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754483012/DSC08462_1_cpk6k4.jpg" alt="Wildlife" loading="lazy">
       </div>
       <div class="masonry-item"> 
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754483057/DSC08433_1_uped5p.jpg" alt="" loading="lazy">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754483057/DSC08433_1_uped5p.jpg" alt="Wildlife" loading="lazy">
       </div>  
       <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754483067/DSC08343_1_s6kip4.jpg" alt="" loading="lazy">
-        </div>
-      <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754483105/DSC09155_xtom3u.jpg" alt="" loading="lazy">
-        </div>
-      <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481915/DSC07756_feugph.jpg" alt="" loading="lazy">
-        </div>
-      <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481879/DSC06932_xmmxby.jpg" alt="" loading="lazy">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754483067/DSC08343_1_s6kip4.jpg" alt="Wildlife" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481878/DSC07079_ctbqwj.jpg" alt="" loading="lazy">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754483105/DSC09155_xtom3u.jpg" alt="Wildlife" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="" alt="" loading="lazy">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481915/DSC07756_feugph.jpg" alt="Wildlife" loading="lazy">
+      </div>
+      <div class="masonry-item">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481879/DSC06932_xmmxby.jpg" alt="Wildlife" loading="lazy">
+      </div>
+      <div class="masonry-item">
+        <img src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754481878/DSC07079_ctbqwj.jpg" alt="Wildlife" loading="lazy">
+      </div>
+
     </div>
   </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Lightbox">
+  </div>
 
   <script>
     // Apparition au scroll
     const items = document.querySelectorAll('.masonry-item');
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1 });
-
     items.forEach(item => observer.observe(item));
 
-    // Mélange des images
+    // Mélange aléatoire
     const grid = document.getElementById('masonry-grid');
     const shuffled = Array.from(grid.children).sort(() => Math.random() - 0.5);
     shuffled.forEach(item => grid.appendChild(item));
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+
+    document.querySelectorAll('.masonry-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+      });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg) {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") lightbox.classList.remove('active');
+    });
   </script>
 </body>
 </html>
