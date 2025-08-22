@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <title>Portfolio - Romain VRNX</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
+  <!-- Polices cinématiques -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: #111;
       color: #fff;
+      overflow-x: hidden;
     }
 
     header {
@@ -23,6 +23,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-family: 'Inter', sans-serif;
     }
 
     nav a {
@@ -30,6 +31,7 @@
       margin-left: 20px;
       text-decoration: none;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
@@ -40,12 +42,22 @@
       padding: 80px 20px;
       max-width: 1200px;
       margin: auto;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
       font-weight: 700;
       margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    h1.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .portfolio-grid {
@@ -64,7 +76,6 @@
       .portfolio-grid {
         grid-template-columns: 1fr;
       }
-
       .portfolio-grid > a:last-child {
         grid-column: auto;
         width: 100%;
@@ -74,16 +85,16 @@
     .item {
       position: relative;
       overflow: hidden;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(40px) scale(0.95);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
     .item.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     .item img {
@@ -91,12 +102,12 @@
       height: 260px;
       object-fit: cover;
       display: block;
-      transition: filter 0.4s ease;
-      border-radius: 10px;
+      border-radius: 12px;
+      transition: transform 0.6s ease;
     }
 
     .item:hover img {
-      filter: brightness(0.9);
+      transform: scale(1.08);
     }
 
     .item-title {
@@ -106,18 +117,19 @@
       width: 100%;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
       padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
+      font-size: 26px;
+      font-family: 'Playfair Display', serif;
       color: #fff;
       text-align: center;
-      border-radius: 0 0 10px 10px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      letter-spacing: 2px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .item:hover .item-title {
-      transform: scale(1.05);
-      text-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -132,43 +144,43 @@
   </header>
 
   <main>
-    <h1>My Portfolio</h1>
+    <h1 id="page-title">My Portfolio</h1>
     <div class="portfolio-grid">
       <a href="travel.html" class="item">
         <img 
-          src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212233/travel_thumb_kch81y.jpg" 
+          src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_800/v1754212233/travel_thumb_kch81y.jpg" 
           alt="Travel" 
           loading="lazy"
           srcset="
-            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212233/travel_thumb_kch81y.jpg?w=400 400w,
-            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212233/travel_thumb_kch81y.jpg?w=800 800w,
-            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212233/travel_thumb_kch81y.jpg?w=1200 1200w"
+            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_400/v1754212233/travel_thumb_kch81y.jpg 400w,
+            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_800/v1754212233/travel_thumb_kch81y.jpg 800w,
+            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_1200/v1754212233/travel_thumb_kch81y.jpg 1200w"
           sizes="(max-width: 600px) 100vw, 50vw" />
         <div class="item-title">Travel</div>
       </a>
 
       <a href="underwater.html" class="item">
         <img 
-          src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212105/underwater_thumb_mfmwtc.jpg" 
+          src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_800/v1754212105/underwater_thumb_mfmwtc.jpg" 
           alt="Underwater" 
           loading="lazy"
           srcset="
-            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212105/underwater_thumb_mfmwtc.jpg?w=400 400w,
-            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212105/underwater_thumb_mfmwtc.jpg?w=800 800w,
-            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212105/underwater_thumb_mfmwtc.jpg?w=1200 1200w"
+            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_400/v1754212105/underwater_thumb_mfmwtc.jpg 400w,
+            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_800/v1754212105/underwater_thumb_mfmwtc.jpg 800w,
+            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_1200/v1754212105/underwater_thumb_mfmwtc.jpg 1200w"
           sizes="(max-width: 600px) 100vw, 50vw" />
         <div class="item-title">Underwater</div>
       </a>
 
       <a href="wildlife.html" class="item">
         <img 
-          src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212194/DSC08496.jpg" 
+          src="https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_800/v1754212194/DSC08496.jpg" 
           alt="Wildlife" 
           loading="lazy"
           srcset="
-            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212194/DSC08496.jpg?w=400 400w,
-            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212194/DSC08496.jpg?w=800 800w,
-            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto,w_800/v1754212194/DSC08496.jpg?w=1200 1200w"
+            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_400/v1754212194/DSC08496.jpg 400w,
+            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_800/v1754212194/DSC08496.jpg 800w,
+            https://res.cloudinary.com/dcdwmkjpj/image/upload/f_auto,q_auto:best,w_1200/v1754212194/DSC08496.jpg 1200w"
           sizes="(max-width: 600px) 100vw, 100vw" />
         <div class="item-title">Wildlife</div>
       </a>
@@ -177,18 +189,24 @@
 
   <script>
     const items = document.querySelectorAll('.item');
+    const title = document.getElementById('page-title');
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
         }
       });
     }, { threshold: 0.2 });
 
     items.forEach(item => observer.observe(item));
+
+    // Animation du titre
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        title.classList.add('visible');
+      }, 200);
+    });
   </script>
 </body>
 </html>
